@@ -1,0 +1,16 @@
+name: 自动同步部署
+on:
+  push:
+    branches: [main]
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 同步到目标仓库
+        uses: ad-m/github-push-action@master
+        with:
+          repository: yuesc0l/yuesc0l.github.io
+          branch: main
+          force: true
+          github_token: ${{ secrets.GITHUB_TOKEN }}
